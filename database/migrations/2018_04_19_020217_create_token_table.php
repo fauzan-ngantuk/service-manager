@@ -19,7 +19,7 @@ class CreateTokenTable extends Migration
             $table->string('token', 255);
             $table->date('expired_at')->nullable();
             $table->integer('limit')->nullable();
-            $table->integer('accessed_times')->nullable();
+            $table->integer('accessed_times')->default(0);
             $table->timestamps();
         });
     }
