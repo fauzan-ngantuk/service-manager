@@ -12,5 +12,13 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/token');
 });
+
+Route::resource('/users', 'UsersController');
+Route::resource('/application', 'ApplicationController');
+Route::resource('/function', 'FunctionController');
+Route::get('/token', 'TokenController@index')->name('token.index');
+Route::get('/token/{id}', 'TokenController@show')->name('token.setting');
+Route::delete('/token/{id}', 'TokenController@destroy')->name('token.delete');
+Route::post('/functiontoken', 'TokenController@setFunction')->name('token.setfunction');
