@@ -3,9 +3,12 @@
 namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Token extends Model
 {
+    use SoftDeletes;
+    
     public $table = 'token';
 
     protected $primaryKey = 'id';
@@ -22,6 +25,11 @@ class Token extends Model
 
     public function function_token()
     {
-        return $this->hasMany('App\Model\FunctionToken', 'id_token', 'id')->with('function_token');
+        return $this->hasMany('App\Model\FunctionToken', 'id_token', 'id')->with('function');
+    }
+
+    public function user()
+    {
+        return $this->hasOne('App\Model\Users', 'id', 'id_user');
     }
 }
